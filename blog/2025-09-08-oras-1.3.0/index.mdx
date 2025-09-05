@@ -1,0 +1,75 @@
+---
+slug: oras-v1.3.0
+title: 🚀 Announcing ORAS v1.3.0 - Elevate your artifact and registry management workflows
+authors: oras
+tags: [oci, artifact]
+---
+
+The ORAS community is thrilled to roll out ORAS CLI v1.3.0, a release packed with stability upgrades and pioneering capabilities. Beyond strengthening existing core functionality, this version introduces three major new features designed to elevate your artifact and registry management workflows:
+
+1. **Portable Backup & Restore**
+2. **Multi-Architecture Image/Artifact Management**
+3. **Rich Formatted Output for Scripting**
+
+## Your Registry’s Safety Net: Portable Backup & Restore
+
+With `oras backup` and `oras restore`, ORAS lets you save your registry content into local OCI layouts (directories or tarballs) as a snapshot and **restore to any registry**.
+
+Use cases include:
+
+- **Air-Gapped Environments**: Organizations operating in isolated or high-security environments can use `oras backup` to export artifacts from a registry to local filesystem, and use `oras restore` to import them into an internal registry with no internet access.
+- **Disaster Recovery and Audit Archival**: Take periodic snapshots of repositories and store them off-site. In case of accidental deletions, outages, and long-term storage to support regulatory audits, `oras restore` can be used to quickly recover full registry content.
+- **Registry Migration**: When moving from one container registry provider to another, the pair of commands enables a full repository export, preserving tags, manifests, layers, and referrers.
+- **Compliance and supply chain security guarantee**: Backup and restore the images along with their supply chain artifacts, such as SBOMs, signatures, vulnerability scanning reports.
+- **Repository Duplication or Promotion**: Move artifacts from dev to staging to prod registries reliably using an intermediate backup file.
+
+## Multi-Arch Image/Artifact Management
+
+With `oras manifest index create`, `oras manifest index update`, you can assemble and update multi-architecture images and artifacts. and push platform-tagged artifacts with ease.
+
+This unlocks scenarios like:
+
+* **IoT rollouts**: deploy ARM builds to edge devices, x86 to servers, RISC-V to custom hardware.
+* **Cross-platform tooling**: distribute platform-aware binaries, Helm charts, or policy bundles.
+* **Multi-OS support**: one release, multiple architectures—all managed coherently.
+
+## Enable Scripting and Automation: Formatted Output 
+
+In automation pipelines, the difference between human-readable and **machine-usable** output can be the difference between clarity and chaos.
+
+ORAS’s enhanced **formatted output support** (via `--format` and optional `--template`) delivers structured metadata for commands like `pull`, `push`, `attach`, `discover`, and `manifest fetch` in formats like JSON, Go templates, trees, and tables. You can even run computations with Sprig template functions ([oras.land][1], [CNCF][2]).
+
+Imagine using ORAS in CI/CD pipelines where:
+
+* A test suite extracts digests or media types programmatically.
+* A policy engine filters artifacts by size or annotations.
+* Metadata flows into dashboards or compliance tooling automatically.
+
+Formatted output transforms ORAS from a user tool to a **devops-friendly, integrable powerhouse**.
+
+## Stability & UX Polish
+
+* **Stable upgrades**: `oras attach`, `oras pull --include-subject`, and more are now production-grade.
+* **Discover UX**: Tree view enhanced with default annotations and rainbow color-coding. Referrers are now always recursively visible in formatted outputs ([oras.land][3]).
+* **Spec alignment**: Full compliance with **OCI distribution-spec v1.1.1**.
+* **Bug fixes**: From symbolic link woes to progress bar glitches—if it was buggy, it’s better now.
+* **Loong64 support**: More platform options open for users.
+* **Developer experience**: Sharper error messages, verbose debugging, and updated docs.
+
+---
+
+## Why This Release Matters
+
+* **Platform teams** gain robust disaster recovery and migration tooling.
+* **DevOps engineers** get the multi-arch flexibility needed for heterogeneous infrastructure.
+* **CI/CD and platform builders** enjoy structured data outputs for reliable, scriptable workflows.
+* **Maintainers** ship safer, cleaner, and more future-proof artifact workflows.
+
+Whether you're looking to **backup and restore entire registries**, **publish multi-architecture bundles**, or **integrate ORAS into pipelines with ease**, v1.3.0 brings the tools—and the clarity—you need.
+
+There are a few bug fixes and a deprecated feature in this release. For a concrete changelog, please see [ORAS CLI v1.3.0-beta.3 Release Notes](https://github.com/oras-project/oras/releases/tag/https://github.com/oras-project/oras/releases/tag/v1.3.0-beta.3).
+
+## Join the ORAS community
+
+You can follow this [installation guidance](https://oras.land/docs/1.3.0-beta/installation) to install ORAS v1.3.0-beta.3 and have a try.
+Feedback is crucial at this stage. If you run into issues or have suggestions, please open an issue. [Join the Slack channel in CNCF](https://slack.cncf.io/) and find us at **oras** channel.
